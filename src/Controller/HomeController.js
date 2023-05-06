@@ -3,7 +3,7 @@ import resquest from "request"
 let getHomePage = (req,res) =>{
     return res.render('homepage.ejs');
 };
-let postWebHook = (req,res) => {
+let postWebHook = (req,res) => { 
     let body = req.body;
     if (body.object === 'page')
     {
