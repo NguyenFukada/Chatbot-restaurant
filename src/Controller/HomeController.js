@@ -1,5 +1,5 @@
 require ('dotenv').config();
-import resquest from "request"
+import request from "request"
 let getHomePage = (req,res) =>{
     return res.render('homepage.ejs');
 };
