@@ -105,13 +105,20 @@ function handlePostback(sender_psid, received_postback) {
     let payload = received_postback.payload;
 
     // Set the response based on the postback payload
-    if (payload === 'yes') {
-        response = { "text": "Thanks!" }
-    } else if (payload === 'no') {
-        response = { "text": "Oops, try sending another image." }
-    } else if (payload === "GET_STARTED"){
-        response = { "text": "OK. Welcome and have a good day. Make yourselft at home!" }
+    switch(payload){
+        case "yes":
+            response = {"text": "Thanks!"}
+            break;
+        case "no":
+            response = { "text": "Oops, try sending another image." }
+            break;
+        case "GET_STARTED":
+            response = { "text": "OK. Welcome and have a good day. Make yourselft at home!" }
+            break;
+        default: 
+            response = { "text": `Oops, I don't know response with posback ${payload}`}
     }
+   
     // Send the message to acknowledge the postback
     callSendAPI(sender_psid, response);
 }
