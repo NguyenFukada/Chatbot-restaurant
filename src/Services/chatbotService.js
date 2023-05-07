@@ -25,10 +25,10 @@ function callSendAPI(response) {
     });
 }
 let handleGetStarted = () => {
-    return Promise( async (resolve,reject)=>{
+    return new Promise( async (resolve,reject)=>{
         try {
             response = { "text": "OK. Welcome and have a good day. Make yourselft at home!" }
-            await this.callSendAPI(response);
+            await callSendAPI(response);
             resolve('Done');
         } catch (e) {
             reject(e);
