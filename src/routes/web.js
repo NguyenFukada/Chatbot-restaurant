@@ -6,6 +6,7 @@ let initWebRoutes = (app) =>{
     router.get("/", HomeController.getHomePage);
     router.post('/webhook', HomeController.postWebHook);
     router.get('/webhook', HomeController.getWebHook)
+    router.post('/setup-profile', HomeController.setupProfile)
     return app.use('/',router)
 }
 
