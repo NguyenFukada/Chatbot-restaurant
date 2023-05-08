@@ -2,7 +2,8 @@ import { response } from "express";
 import request from "request"
 require('dotenv').config();
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN
-const IMG_GET_STARTED = 'https://bit.ly/loghorizon-chatbot'
+// const IMG_GET_STARTED = 'https://bit.ly/loghorizon-chatbot'
+const IMG_GET_STARTED = 'https://assets.architecturaldigest.in/photos/63733ec2a2dd6ea6560eb6da/16:9/pass/Ditas%20Interior%20Image%20-%201%20(8).png''
 function callSendAPI(sender_psid,response) {
     // Construct the message body
     let request_body = {
