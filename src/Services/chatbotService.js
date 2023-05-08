@@ -35,6 +35,7 @@ let getUserName = (sender_psid) => {
             if (!err) {
                 body = JSON.parse(body)
                 let username = `${body.first_name} ${body.last_name}`;
+                console.log("usename: ",username);
                 resolve(username);
             } else {
                 console.error("Unable to send message:" + err);
@@ -42,7 +43,6 @@ let getUserName = (sender_psid) => {
             }
         });
     })
-    
 }
 let handleGetStarted = (sender_psid) => {
     return new Promise( async (resolve,reject)=>{
