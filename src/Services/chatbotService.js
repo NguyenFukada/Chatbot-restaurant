@@ -55,6 +55,7 @@ let handleGetStarted = (sender_psid) => {
             // send text message
             await callSendAPI(sender_psid,response1);
             // send generic tempalte_generic
+            await callSendAPI(sender_psid, response2);
             resolve('Done');
         } catch (e) {
             reject(e);
