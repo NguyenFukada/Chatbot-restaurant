@@ -3,6 +3,9 @@ import request from "request"
 require('dotenv').config();
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN
 // const IMG_GET_STARTED = 'https://bit.ly/loghorizon-chatbot'
+const IMG_MAIN_MENU = 'https://img.freepik.com/free-vector/modern-restaurant-menu-fast-food_52683-48982.jpg?w=2000'
+const IMG_HOURS = 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/restaurant-open-hours-poster-template-design-679efb3c48c0f2dbcfb9a07d337bd562_screen.jpg?ts=1637039341'
+const IMG_SHOW_ROOMS = 'https://images.squarespace-cdn.com/content/v1/5f8f46ebf88e8a03d3dd5466/1620936876522-6N7VP0ABJH73N79G659D/53_BanquetLG.png'
 const IMG_GET_STARTED = 'https://assets.architecturaldigest.in/photos/63733ec2a2dd6ea6560eb6da/16:9/pass/Ditas%20Interior%20Image%20-%201%20(8).png'
 function callSendAPI(sender_psid,response) {
     // Construct the message body
@@ -118,7 +121,7 @@ let GetMainMenuTemplate = () => {
                     {
                     "title": "Our Restaurent Menus",
                     "subtitle": "We are pleased to offer you a wide-range of menu for lunch and dinner",
-                    "image_url": IMG_GET_STARTED,
+                    "image_url": IMG_MAIN_MENU,
                     "buttons": [
                         {
                             "type": "postback",
@@ -135,7 +138,7 @@ let GetMainMenuTemplate = () => {
                     {
                         "title": "Hours",
                         "subtitle": "MON-FRI 10AM-11PM | SAT 5PM - 10PM | SUM 5PM - 9PM",
-                        "image_url": IMG_GET_STARTED,
+                        "image_url": IMG_HOURS,
                         "buttons": [
                             {
                                 "type": "postback",
@@ -147,7 +150,7 @@ let GetMainMenuTemplate = () => {
                     {
                         "title": "Bandqut Restaurant",
                         "subtitle": "Restaurant accomodates up to 300 seated guests and similar at cooktail reception",
-                        "image_url": IMG_GET_STARTED,
+                        "image_url": IMG_SHOW_ROOMS,
                         "buttons": [
                             {
                                 "type": "postback",
