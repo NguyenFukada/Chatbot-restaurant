@@ -7,6 +7,7 @@ let initWebRoutes = (app) =>{
     router.post('/webhook', HomeController.postWebHook);
     router.get('/webhook', HomeController.getWebHook)
     router.post('/setup-profile', HomeController.setupProfile)
+    router.post('/setup-pesistent-menu', HomeController.setupPersistentMenu)
     return app.use('/',router)
 }
 

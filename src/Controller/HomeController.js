@@ -113,6 +113,7 @@ async function handlePostback(sender_psid, received_postback) {
         case "no":
             response = { "text": "Oops, try sending another image." }
             break;
+        case "RESTART_BOT":
         case "GET_STARTED":
             await chatbotService.handleGetStarted(sender_psid);
             break;
@@ -173,9 +174,55 @@ let setupProfile = async(req,res) => {
 
     return res.send("setup user profile success!")
 }
+
+let setupPersistentMenu = async (req,res) => {
+    let request_body = {
+        "persistent_menu": [
+            {
+                "locale": "default",
+                "composer_input_disabled": false,
+                "call_to_actions": [
+                    {
+                        "type": "web_url",
+                        "title": "Youtube Channel Loghorizon",
+                        "url": "https://www.youtube.com/watch?v=w1tnyqcp_Gk&t=226s",
+                        "webview_height_ratio": "full"
+                    },
+                    {
+                        "type": "web_url",
+                        "title": "Facebook Page Loghorizon",
+                        "url": "https://www.youtube.com/watch?v=w1tnyqcp_Gk&t=226s",
+                        "webview_height_ratio": "full"
+                    },
+                    {
+                        "type": "postback",
+                        "title": "Restart this chatbot",
+                        "payload": "RESTART_BOT"
+                    }
+                ]
+            }
+        ]
+    }
+    await request({
+        "uri": `https://graph.facebook.com/v16.0/me/messenger_profile?access_token=${PAGE_ACCESS_TOKEN}`,
+        "qs": { "access_token": PAGE_ACCESS_TOKEN },
+        "method": "POST",
+        "json": request_body
+    }, (err, res, body) => {
+        console.log(body);
+        if (!err) {
+            console.log('setup persistent menu success!')
+        } else {
+            console.error("setup persistent menu failed:" + err);
+        }
+    });
+
+    return res.send("setup user persistent menu success!")
+}
 module.exports = {
     getHomePage: getHomePage,
     postWebHook: postWebHook,
     getWebHook: getWebHook,
-    setupProfile: setupProfile
+    setupProfile: setupProfile,
+    setupPersistentMenu: setupPersistentMenu
 }
