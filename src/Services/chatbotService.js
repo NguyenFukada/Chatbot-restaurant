@@ -51,7 +51,7 @@ let handleGetStarted = (sender_psid) => {
         try {
             let username = await getUserName(sender_psid);
             let response1 = { "text": `OK. Welcome ${username} and have a good day. Make yourselft at home!` };
-            let response2 = sendGetStartedTemplate();
+            let response2 = GetStartedTemplate();
 
             // send text message
             await callSendAPI(sender_psid,response1);
@@ -63,7 +63,7 @@ let handleGetStarted = (sender_psid) => {
         }
     })
 }
-let sendGetStartedTemplate = () =>{
+let GetStartedTemplate = () =>{
     let response = {
             "attachment": {
                 "type": "template",
@@ -96,7 +96,74 @@ let sendGetStartedTemplate = () =>{
         }
     return response;
 }
+let handleSendMainMenu = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let response2 = GetMainMenuTemplate();
+
+            await callSendAPI(sender_psid, response2);
+            resolve('Done');
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+let GetMainMenuTemplate = () => {
+    let response = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [
+                    {
+                    "title": "Our Restaurent Menus",
+                    "subtitle": "We are pleased to offer you a wide-range of menu for lunch and dinner",
+                    "image_url": IMG_GET_STARTED,
+                    "buttons": [
+                        {
+                            "type": "postback",
+                            "title": "LUNCH",
+                            "payload": "LUNCH_MENU",
+                        },
+                        {
+                            "type": "postback",
+                            "title": "DINNER",
+                            "payload": "DINNER_MENU",
+                        },
+                    ],
+                },
+                    {
+                        "title": "Hours",
+                        "subtitle": "MON-FRI 10AM-11PM | SAT 5PM - 10PM | SUM 5PM - 9PM",
+                        "image_url": IMG_GET_STARTED,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "MAKE A RESERVATION!",
+                                "payload": "RESERVE_TABLE",
+                            },
+                        ],
+                    },
+                    {
+                        "title": "Bandqut Restaurant",
+                        "subtitle": "Restaurant accomodates up to 300 seated guests and similar at cooktail reception",
+                        "image_url": IMG_GET_STARTED,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "SHOW ROOMS",
+                                "payload": "SHOW_ROOMS",
+                            },
+                        ],
+                    }
+            ]
+            }
+        }
+    }
+    return response;
+}
 module.exports = {
     handleGetStarted: handleGetStarted,
-    callSendAPI: callSendAPI
+    callSendAPI: callSendAPI,
+    handleSendMainMenu: handleSendMainMenu
 }
