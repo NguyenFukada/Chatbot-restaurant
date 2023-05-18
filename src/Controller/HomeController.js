@@ -129,8 +129,10 @@ async function handlePostback(sender_psid, received_postback) {
         case "VIEW_APPETIZERS": 
         case "VIEW_FISH":
         case "VIEW_BACON":
-        case 'BACK_TO_MAIN_MENU':
             await chatbotService.handleSendLunchMenu(sender_psid);
+            break;
+        case 'BACK_TO_MAIN_MENU':
+            await chatbotService.handleBackMainMenu(sender_psid);
             break;
         default: 
             response = { "text": `Oops, I don't know response with posback ${payload}`}
@@ -239,5 +241,6 @@ module.exports = {
     postWebHook: postWebHook,
     getWebHook: getWebHook,
     setupProfile: setupProfile,
-    setupPersistentMenu: setupPersistentMenu
+    setupPersistentMenu: setupPersistentMenu,
+    
 }

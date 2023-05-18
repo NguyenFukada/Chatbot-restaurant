@@ -193,6 +193,9 @@ let handleSendDinnerMenu = (sender_psid) => {
         }
     })
 }
+let handleBackMainMenu = async (sender_psid) => {
+    await handleSendDinnerMenu(sender_psid);
+}
 let GetLunchMenuTemplate = () => {
     let response = {
         "attachment": {
@@ -264,4 +267,5 @@ module.exports = {
     handleSendMainMenu: handleSendMainMenu,
     handleSendLunchMenu: handleSendLunchMenu,
     handleSendDinnerMenu: handleSendDinnerMenu,
+    handleBackMainMenu: handleBackMainMenu
 }
