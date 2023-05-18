@@ -9,6 +9,7 @@ const IMG_SHOW_ROOMS = 'https://images.squarespace-cdn.com/content/v1/5f8f46ebf8
 const IMG_VIEW_APPETIZERS = 'https://bit.ly/loghorizon-restaurant-appetizers'
 const IMG_VIEW_FISH = 'https://bit.ly/loghorizon-restaurant-fish-and-chips'
 const IMG_VIEW_BACON = 'https://bit.ly/loghorizon-restaurant-bacoon'
+const IMG_BACK_MAIN_MENU = 'https://bit.ly/loghorizon-restaurant-backmenu'
 const IMG_GET_STARTED = 'https://assets.architecturaldigest.in/photos/63733ec2a2dd6ea6560eb6da/16:9/pass/Ditas%20Interior%20Image%20-%201%20(8).png'
 function callSendAPI(sender_psid,response) {
     // Construct the message body
@@ -233,6 +234,18 @@ let GetLunchMenuTemplate = () => {
                                 "type": "postback",
                                 "title": "DETAIL",
                                 "payload": "VIEW_BACON",
+                            },
+                        ],
+                    },
+                    {
+                        "title": "Return",
+                        "subtitle": "Return main menu",
+                        "image_url": IMG_BACK_MAIN_MENU,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Return",
+                                "payload": "BACK_TO_MAIN_MENU",
                             },
                         ],
                     }
