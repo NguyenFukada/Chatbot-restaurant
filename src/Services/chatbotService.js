@@ -6,6 +6,9 @@ const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN
 const IMG_MAIN_MENU = 'https://img.freepik.com/free-vector/modern-restaurant-menu-fast-food_52683-48982.jpg?w=2000'
 const IMG_HOURS = 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/restaurant-open-hours-poster-template-design-679efb3c48c0f2dbcfb9a07d337bd562_screen.jpg?ts=1637039341'
 const IMG_SHOW_ROOMS = 'https://images.squarespace-cdn.com/content/v1/5f8f46ebf88e8a03d3dd5466/1620936876522-6N7VP0ABJH73N79G659D/53_BanquetLG.png'
+const IMG_VIEW_APPETIZERS = 'https://bit.ly/loghorizon-restaurant-appetizers'
+const IMG_VIEW_FISH = 'https://bit.ly/loghorizon-restaurant-fish-and-chips'
+const IMG_VIEW_BACON = 'https://bit.ly/loghorizon-restaurant-bacoon'
 const IMG_GET_STARTED = 'https://assets.architecturaldigest.in/photos/63733ec2a2dd6ea6560eb6da/16:9/pass/Ditas%20Interior%20Image%20-%201%20(8).png'
 function callSendAPI(sender_psid,response) {
     // Construct the message body
@@ -148,7 +151,7 @@ let GetMainMenuTemplate = () => {
                         ],
                     },
                     {
-                        "title": "Bandqut Restaurant",
+                        "title": "Bandquiet Restaurant",
                         "subtitle": "Restaurant accomodates up to 300 seated guests and similar at cooktail reception",
                         "image_url": IMG_SHOW_ROOMS,
                         "buttons": [
@@ -165,8 +168,87 @@ let GetMainMenuTemplate = () => {
     }
     return response;
 }
+let handleSendLunchMenu = (sender_psid)=>{
+    return new Promise(async (resolve, reject) => {
+        try {
+            let response2 = GetLunchMenuTemplate();
+
+            await callSendAPI(sender_psid, response2);
+            resolve('Done');
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+let handleSendDinnerMenu = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let response2 = GetDinnerMenuTemplate();
+
+            await callSendAPI(sender_psid, response2);
+            resolve('Done');
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+let GetLunchMenuTemplate = () => {
+    let response = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [
+                    {
+                        "title": "Desserts",
+                        "subtitle": "Our restaurant has many delicious desserts",
+                        "image_url": IMG_VIEW_APPETIZERS,
+                        "buttons": [
+                            {
+                                // appetizers
+                                "type": "postback",
+                                "title": "DETAIL",
+                                "payload": "VIEW_APPETIZERS",
+                            },
+                        ],
+                    },
+                    {
+                        "title": "Fish and Sea food",
+                        "subtitle": "Dishes specializing in fish and seafood",
+                        "image_url": IMG_VIEW_FISH,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "DETAIL",
+                                "payload": "VIEW_FISH",
+                            },
+                        ],
+                    },
+                    {
+                        "title": "Bacon",
+                        "subtitle": "There are smoked meats prepared by professional chefs",
+                        "image_url": IMG_VIEW_BACON,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "DETAIL",
+                                "payload": "VIEW_BACON",
+                            },
+                        ],
+                    }
+                ]
+            }
+        }
+    }
+    return response;
+}
+let GetDinnerMenuTemplate = () => {
+
+}
 module.exports = {
     handleGetStarted: handleGetStarted,
     callSendAPI: callSendAPI,
-    handleSendMainMenu: handleSendMainMenu
+    handleSendMainMenu: handleSendMainMenu,
+    handleSendLunchMenu: handleSendLunchMenu,
+    handleSendDinnerMenu: handleSendDinnerMenu,
 }
