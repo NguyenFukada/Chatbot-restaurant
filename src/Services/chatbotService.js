@@ -194,7 +194,7 @@ let handleSendDinnerMenu = (sender_psid) => {
     })
 }
 let handleBackMainMenu = async (sender_psid) => {
-    await handleSendDinnerMenu(sender_psid);
+    await handleSendMainMenu(sender_psid);
 }
 let GetLunchMenuTemplate = () => {
     let response = {
